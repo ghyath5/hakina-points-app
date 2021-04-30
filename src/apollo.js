@@ -40,7 +40,7 @@ const getNewToken = () => {
     });
 };
 const httpLink = new HttpLink({
-    uri: 'https://hasura-efxm.onrender.com/v1/graphql',
+    uri: 'https://hasura-spzf.onrender.com/v1/graphql',
 });
 
 const authLink = setContext((_, { headers }) => {
