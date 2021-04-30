@@ -97,7 +97,8 @@ export default function Store() {
                 flexDirection: 'row', backgroundColor: '#fff', justifyContent: 'space-around', alignItems: 'center',
                 borderRadius: 5,
                 paddingVertical: 10,
-                borderBottomWidth: 0.5,
+                borderBottomWidth: 1,
+                marginBottom: 5,
                 borderColor: '#eee'
             }}>
                 <Text style={styles.itemTitle}>{item.title.split('(')[0]}</Text>
@@ -114,7 +115,7 @@ export default function Store() {
                         purchaseItemAsync(item.productId)
                     }}
                 >
-                    <Text style={{ color: '#fff' }}>{`${item.price} ${item.priceCurrencyCode}`}</Text>
+                    <Text style={{ color: '#fff' }}>{`${item.price}`}</Text>
                 </TouchableOpacity>
             </View>
         );

@@ -6,10 +6,10 @@ import RNPickerSelect from 'react-native-picker-select';
 import DateTimePicker from '@react-native-community/datetimepicker';
 import { ME, UPSERT_USER_INFO } from './../../gql'
 import Theme from '../../theme';
-
+import Ionicons from 'react-native-vector-icons/Ionicons';
 const gender = {
-    'male': '👨🏻',
-    'female': '👩🏻‍🦰'
+    'male': 'man-outline',
+    'female': 'woman-outline'
 }
 let countries = [
     'سوريا',
@@ -92,7 +92,7 @@ export default function Settings() {
         }}>
             <View style={{ flex: 1, }}>
                 <View style={{ alignItems: 'center', backgroundColor: 'white', borderBottomWidth: 1, borderBottomColor: '#eee', paddingVertical: screenHeight / 30 }}>
-                    <Text style={{ fontSize: 60 / fontScale }}>{gender[client.gender]}</Text>
+                    <Ionicons size={55} name={gender[client.gender]} />
                     <Text style={{ fontSize: 18 / fontScale, fontWeight: 'bold', color: Theme.primary, marginBottom: 5 }}>{client.first_name}</Text>
                 </View>
                 <View style={{ flexDirection: 'row', flex: 1, }}>
