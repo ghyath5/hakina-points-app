@@ -1,10 +1,10 @@
 {
   "expo": {
-    "name": "hakina-points",
+    "name": "Hakina Points",
     "slug": "hakina-points",
-    "version": "1.0.0",
+    "version": "3.1.0",
     "orientation": "portrait",
-    "icon": "./assets/icon.png",
+    "icon": "./assets/logo.png",
     "splash": {
       "image": "./assets/splash.png",
       "resizeMode": "contain",
@@ -17,13 +17,21 @@
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "config": {
+        "googleMobileAdsAppId": "ca-app-pub-7749815556108724~4625988608"
+      },
+      "bundleIdentifier": "com.ghyath3.hakina-points"
     },
     "android": {
+      "config": {
+        "googleMobileAdsAppId": "ca-app-pub-7749815556108724~3504478629"
+      },
       "adaptiveIcon": {
-        "foregroundImage": "./assets/adaptive-icon.png",
+        "foregroundImage": "./assets/logo.png",
         "backgroundColor": "#FFFFFF"
-      }
+      },
+      "package": "com.superdar.hakina_coins"
     },
     "web": {
       "favicon": "./assets/favicon.png"
