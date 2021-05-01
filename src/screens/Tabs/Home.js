@@ -61,7 +61,7 @@ export default function Home() {
             }
         }).then(({ data }) => {
             if (data?.app_rewarded?.state) {
-                dispatch(setTime(new Date().setMinutes(new Date().getMinutes() + 1)))
+                dispatch(setTime(new Date().setMinutes(new Date().getMinutes() + 10)))
             }
             Alert.alert("", data?.app_rewarded?.message)
         }).catch(e => {
