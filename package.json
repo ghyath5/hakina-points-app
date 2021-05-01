@@ -6,7 +6,7 @@
     "debug-build": "react-native bundle --platform android --dev false --entry-file index.js --bundle-output android/app/src/main/assets/index.android.bundle --assets-dest android/app/src/main/res/ && cd android && ./gradlew assembleDebug && cd app/src/main/res/ && rmdir /S /Q raw && rmdir /S /Q drawable-mdpi",
     "release-build": "react-native bundle --platform android --dev false --entry-file index.js --bundle-output android/app/src/main/assets/index.android.bundle --assets-dest android/app/build/intermediates/res/merged/release/ && cd android && ./gradlew assembleRelease && cd..",
     "install-apk": "cd android && ./gradlew installRelease",
-    "release-aab": "cd android && ./gradlew bundleRelease",
+    "aab": "cd android && ./gradlew bundleRelease",
     "assemble-release": "cd android && ./gradlew assembleRelease",
     "ios": "react-native run-ios",
     "web": "expo start --web",
