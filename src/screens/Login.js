@@ -1,5 +1,5 @@
 import React from 'react'
-import { StyleSheet, Text, View, Dimensions, Image, TextInput, TouchableOpacity, ActivityIndicator } from 'react-native'
+import { StyleSheet, Text, View, Dimensions, Image, TextInput, TouchableOpacity, ActivityIndicator, Alert } from 'react-native'
 import { useSelector, useDispatch } from 'react-redux'
 import { setTokens } from '../redux/clientSlice'
 import { FontAwesome5 } from '@expo/vector-icons';
@@ -54,8 +54,11 @@ export default function Login({ navigation }) {
                     tel_id: data.app_auth.tel_id
                 }))
                 navigation.navigate('Main')
+            } else {
+                Alert.alert("", "حدث خطأ .. تأكد من الرمز وأعد المحاولة")
             }
         }).catch(e => {
+            Alert.alert("", "حدث خطأ .. تأكد من الرمز وأعد المحاولة")
         }).finally(() => setLoading(false))
     }
     return (
@@ -109,15 +112,14 @@ export default function Login({ navigation }) {
 
                 </TouchableOpacity>
             </View>
-
-        </View >
+        </View>
     )
 }
 const styles = StyleSheet.create({
     loginContainer: {
         flex: 1,
         backgroundColor: '#fff',
-        minHeight: screenHeight
+        // minHeight: screenHeight
     },
     topHead: {
         flex: 1,

@@ -1,5 +1,5 @@
 import React from 'react';
-// import { ActivityIndicator } from 'react-native'
+import { enableScreens } from "react-native-screens";
 import { Provider } from 'react-redux'
 import { PersistGate } from 'redux-persist/integration/react'
 import { ApolloProvider } from '@apollo/react-hooks';
@@ -11,7 +11,7 @@ import AppNavigator from './src/navigation';
 import {
   SafeAreaView,
 } from 'react-native-safe-area-context';
-
+enableScreens(true);
 export default function App() {
   // const token = useSelector((state) => state.client.token)
   // const [client, setClient] = React.useState(null);
