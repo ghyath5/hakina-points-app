@@ -34,7 +34,7 @@ export default function Home() {
     React.useEffect(() => {
         // AdMobRewarded.addEventListener('rewardedVideoDidDismiss', () => rewarded())
         AdMobRewarded.addEventListener("rewardedVideoUserDidEarnReward", () => rewarded());
-        AdMobRewarded.addEventListener("rewardedVideoDidLoad", () => console.log("VideoLoaded"));
+        AdMobRewarded.addEventListener("rewardedVideoDidLoad", () => { });
         AdMobRewarded.addEventListener("rewardedVideoDidFailToLoad", () => {
             Alert.alert("", "فشل تحميل الاعلان حاول لاحقاً")
         });
