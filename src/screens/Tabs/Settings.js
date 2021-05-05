@@ -1,5 +1,5 @@
 import React from 'react'
-import { Button, StyleSheet, Text, View, ActivityIndicator, Dimensions, TextInput, TouchableOpacity, Alert } from 'react-native'
+import { StyleSheet, Text, View, ActivityIndicator, Dimensions, TextInput, TouchableOpacity, Alert } from 'react-native'
 import { useApolloClient } from '@apollo/react-hooks'
 import { useSelector, } from 'react-redux'
 import RNPickerSelect from 'react-native-picker-select';

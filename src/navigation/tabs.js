@@ -2,6 +2,7 @@ import React from 'react'
 import { StyleSheet, Platform } from 'react-native'
 
 import SearchScreen from '../screens/Tabs/Search'
+import GamesScreen from '../screens/Tabs/Games'
 import SettingsScreen from '../screens/Tabs/Settings'
 import StoreScreen from '../screens/Tabs/Store'
 import HomeScreen from '../screens/Tabs/Home'
@@ -27,6 +28,9 @@ export default function tabs() {
                         case 'بحث':
                             iconName = 'search-outline'
                             break;
+                        case 'تسالي':
+                            iconName = 'game-controller-outline'
+                            break;
                         case 'الحساب':
                             iconName = 'settings-outline'
                             break;
@@ -43,7 +47,8 @@ export default function tabs() {
         >
             <Tab.Screen name="الحساب" component={SettingsScreen} />
             {Platform.OS == 'android' && <Tab.Screen name="المتجر" component={StoreScreen} />}
-            <Tab.Screen name="بحث" component={SearchScreen} />
+            <Tab.Screen name="تسالي" component={GamesScreen} />
+            {/* <Tab.Screen name="بحث" component={SearchScreen} /> */}
             <Tab.Screen name="الرئيسية" component={HomeScreen} />
         </Tab.Navigator>
     );
