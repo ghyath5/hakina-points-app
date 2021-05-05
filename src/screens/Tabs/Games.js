@@ -126,7 +126,7 @@ export default function Games({ navigation }) {
                         scaleY: toastMsgSclae
                     }
                 ],
-                backgroundColor: partner ? Theme.primary : 'tomato', padding: 5, borderRadius: 15, top: height / 55, justifyContent: 'center', alignItems: 'center', width: '90%'
+                backgroundColor: partner ? Theme.primary : 'tomato', padding: 5, borderRadius: 15, top: height / 55, justifyContent: 'center', alignItems: 'center', width: '90%', marginBottom: height / 35
             }}>
                 {!partner &&
                     <Text style={{ color: 'orange', ...styles.toastMsg }}>انت لست في محادثة ... قم بفتح محادثة على البوت لتتمكن من اللعب مع الشريك</Text>
