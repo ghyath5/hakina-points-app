@@ -9,6 +9,9 @@ import GameShape from '../../components/Game'
 import { getNewToken } from './../../apollo'
 import { ME } from './../../gql'
 import { ioSocket } from '../../socket'
+import {
+    AdMobBanner,
+} from 'expo-ads-admob';
 LogBox.ignoreLogs(["Setting a timer"]);
 const { height } = Dimensions.get('screen')
 export default function Games({ navigation }) {
@@ -116,7 +119,10 @@ export default function Games({ navigation }) {
                 </View>
                 <Text style={styles.title}>تسالي حاكينا</Text>
             </View>
-
+            <AdMobBanner
+                bannerSize="smartBannerPortrait"
+                adUnitID="ca-app-pub-7749815556108724/2328780715" // Test ID, Replace with your-admob-unit-id
+                servePersonalizedAds />
             <Animated.View style={{
                 transform: [
                     {
