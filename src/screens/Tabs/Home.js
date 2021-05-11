@@ -27,7 +27,7 @@ export default function Home() {
     const apolloClient = useApolloClient()
     React.useEffect(() => {
         const bootstrapAsync = async () => {
-            await AdMobRewarded.setAdUnitID(Platform.OS === 'ios' ? rewardedVidIdIOS : rewardedVidId); // Test ID, Replace with your-admob-unit-id
+            await AdMobRewarded.setAdUnitID(Platform.OS === 'ios' ? rewardedVidIdIOS : rewardedVidId);
         }
         bootstrapAsync()
     }, [])
@@ -89,9 +89,6 @@ export default function Home() {
     const MemoAd = React.useMemo(() => AdBanner, [])
     return (
         <View style={styles.container}>
-            <View style={{ alignItems: 'center', flex: 1, justifyContent: 'center' }}>
-                <MemoAd />
-            </View>
             <ActivityIndicator style={{ flex: 1, position: 'absolute', justifyContent: 'center', alignItems: 'center', width: '100%', height: '100%' }} animating={reward.loading} size={70} color={'tomato'} />
             <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
                 {Boolean(timeToEnter <= 0) ?
@@ -121,6 +118,10 @@ export default function Home() {
                             canReward: true
                         })
                     }} />}
+            </View>
+
+            <View style={{ alignItems: 'center', flex: 1, justifyContent: 'center' }}>
+                <MemoAd />
             </View>
         </View>
     )
