@@ -2,7 +2,7 @@
   "expo": {
     "name": "Hakina Points",
     "slug": "hakina-points",
-    "version": "4.0.5",
+    "version": "4.1.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "splash": {
@@ -21,7 +21,7 @@
       "config": {
         "googleMobileAdsAppId": "ca-app-pub-7749815556108724~4625988608"
       },
-      "bundleIdentifier": "com.ghyath3.hakina-points"
+      "bundleIdentifier": "com.superdar.hakina_coins"
     },
     "android": {
       "config": {
@@ -31,7 +31,8 @@
         "foregroundImage": "./assets/icon.png",
         "backgroundColor": "#FFFFFF"
       },
-      "package": "com.superdar.hakina_coins"
+      "package": "com.superdar.hakina_coins",
+      "googleServicesFile": "./google-services.json"
     },
     "web": {
       "favicon": "./assets/favicon.png"

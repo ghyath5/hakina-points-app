@@ -135,8 +135,8 @@ android {
         applicationId 'com.superdar.hakina_coins'
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode 12
-        versionName "4.0.5"
+        versionCode 13
+        versionName "4.1.0"
     }
     splits {
         abi {
@@ -225,3 +225,5 @@ task copyDownloadableDepsToLibs(type: Copy) {
 }
 
 apply from: file("../../node_modules/@react-native-community/cli-platform-android/native_modules.gradle"); applyNativeModulesAppBuildGradle(project)
+
+apply plugin: 'com.google.gms.google-services'

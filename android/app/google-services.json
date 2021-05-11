@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "29365666099",
+    "project_id": "hakina-10b80",
+    "storage_bucket": "hakina-10b80.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:29365666099:android:4c549d376de96289293e46",
+        "android_client_info": {
+          "package_name": "com.superdar.hakina_coins"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "29365666099-c9u8sdq29cf744uimgpfuo5ka631qo5l.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDQNJO-ChVaH8_cM2P4uQc-2-e_iRMpbvQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "29365666099-c9u8sdq29cf744uimgpfuo5ka631qo5l.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      },
+      "admob_app_id": "ca-app-pub-7749815556108724~3504478629"
+    }
+  ],
+  "configuration_version": "1"
+}
