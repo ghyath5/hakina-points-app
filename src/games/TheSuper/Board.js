@@ -16,6 +16,11 @@ const Board = forwardRef(({ words, activeWord }, ref) => {
                     animated: true,
                 });
             }
+        },
+        resetScroll() {
+            if (scrollViewRef.current !== null) {
+                scrollViewRef.current.scrollToEnd({ animated: true })
+            }
         }
 
     }));
@@ -61,8 +66,8 @@ const Board = forwardRef(({ words, activeWord }, ref) => {
                         setDataSourceCords(dataSourceCords);
                     }}>
                         {word.active ?
-                            <Text style={{ ...styles.word, ...styles.activeWord, ...(!activeWord.isCorrect ? styles.wrongWord : {}) }}>
-                                <Text style={{ ...styles.passedCharacters }}>
+                            <Text numberOfLines={1} style={{ flex: 1, ...styles.word, ...styles.activeWord, ...(!activeWord.isCorrect ? styles.wrongWord : {}) }}>
+                                <Text numberOfLines={1} style={{ flex: 1, ...styles.passedCharacters }}>
                                     {passed}
                                 </Text>
                                 {left}
@@ -93,12 +98,14 @@ const styles = StyleSheet.create({
         fontSize: 16 / fontScale,
     },
     activeWord: {
-        fontSize: 20 / fontScale,
+        fontSize: 18 / fontScale,
         fontWeight: 'bold',
-        color: '#fff'
+        color: '#fff',
+        flexWrap: 'nowrap',
     },
     passedCharacters: {
-        color: '#25DB65'
+        color: '#25DB65',
+        flexWrap: 'nowrap'
     },
     wrongWord: {
         color: '#D44105'

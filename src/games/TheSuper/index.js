@@ -13,7 +13,7 @@ export default function Game({ partner, me }) {
     const [isLoading, setIsLoading] = useState(true)
     const [currentText, setCurrentText] = useState('')
     const [activeIndex, setActiveIndex] = useState(0)
-    const [overlay, setOverlay] = useState('في انتظار الشريك ...')
+    const [overlay, setOverlay] = useState('في انتظار الشريك ليدخل...')
     const [text, setText] = useState('جار التحميل')
     const boardRef = useRef(null)
     const input = useRef(null)
@@ -34,6 +34,10 @@ export default function Game({ partner, me }) {
     const [partnerPlayer, setPartnerPlayer] = useState({ progress: 0, score: 0, connected: false })
     const resetGame = () => {
         setActiveIndex(0)
+        setCurrentText('')
+        setTimeout(() => {
+            boardRef.current.resetScroll()
+        }, 80)
     }
     if (isWordCorrect) {
         const progress = ((activeWord.index + 1) * 100 / words.length)
@@ -46,11 +50,15 @@ export default function Game({ partner, me }) {
         })
         if (progress >= 100) {
             Alert.alert("", "انت الرابح")
-            resetGame()
             setMePlayer({
                 ...mePlayer,
                 progress: 0,
                 score: Number(mePlayer.score) + 1
+            })
+            setPartnerPlayer({
+                ...partnerPlayer,
+                connected: true,
+                progress: 0
             })
         }
         setTimeout(() => {
@@ -87,8 +95,8 @@ export default function Game({ partner, me }) {
             })
         });
         socket.on('game over', ({ text }) => {
-
             setText(text)
+            resetGame()
         })
         socket.on('playerStatus', ({ connected, score }) => {
             checkPartner(connected)
@@ -99,12 +107,13 @@ export default function Game({ partner, me }) {
             })
         })
         socket.on('partnerWin', ({ score, text }) => {
-            resetGame()
             setText(text)
+            resetGame()
             setPartnerPlayer({
                 ...partnerPlayer,
                 score: Number(score),
-                connected: true
+                connected: true,
+                progress: 0
             })
             Alert.alert("", "لقد خسرت")
         })
@@ -126,7 +135,7 @@ export default function Game({ partner, me }) {
                 }
             }, 1000)
         } else {
-            setOverlay('في انتظار الشريك ...')
+            setOverlay('في انتظار الشريك ليدخل...')
             Keyboard.dismiss()
         }
     }

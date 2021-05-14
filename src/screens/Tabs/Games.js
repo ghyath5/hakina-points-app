@@ -12,6 +12,7 @@ import { ioSocket } from '../../socket'
 import {
     AdMobBanner,
 } from 'expo-ads-admob';
+import * as Analytics from 'expo-firebase-analytics';
 LogBox.ignoreLogs(["Setting a timer"]);
 const { height } = Dimensions.get('screen')
 export default function Games({ navigation }) {
@@ -81,6 +82,18 @@ export default function Games({ navigation }) {
         }
     })
     let client = data?.clients_by_pk
+    useEffect(() => {
+        runAnalytic = async () => {
+            await Analytics.setUserId(tel_id || 'not-specified-yet');
+            await Analytics.setUserProperties({
+                client_name: client?.first_name || 'unknown client name'
+            });
+        }
+
+        if (client) {
+            runAnalytic()
+        }
+    }, [client])
     const enterGame = (path) => {
         if (!partner) {
             socket.emit('get connected client')
