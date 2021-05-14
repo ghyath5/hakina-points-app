@@ -8,8 +8,8 @@ import StoreScreen from '../screens/Tabs/Store'
 import HomeScreen from '../screens/Tabs/Home'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Ionicons from 'react-native-vector-icons/Ionicons';
+import * as Analytics from 'expo-firebase-analytics';
 const Tab = createBottomTabNavigator();
-
 export default function tabs() {
     return (
         <Tab.Navigator
@@ -45,11 +45,35 @@ export default function tabs() {
                 inactiveTintColor: 'gray',
             }}
         >
-            <Tab.Screen name="الحساب" component={SettingsScreen} />
-            {Platform.OS == 'android' && <Tab.Screen name="المتجر" component={StoreScreen} />}
-            <Tab.Screen name="تسالي" component={GamesScreen} />
+            <Tab.Screen
+                listeners={{
+                    tabPress: e => {
+                        Analytics.setCurrentScreen('الحساب');
+                    },
+                }}
+                name="الحساب" component={SettingsScreen} />
+            {Platform.OS == 'android' && <Tab.Screen
+                listeners={{
+                    tabPress: e => {
+                        Analytics.setCurrentScreen('المتجر');
+                    },
+                }}
+                name="المتجر" component={StoreScreen} />}
+            <Tab.Screen name="تسالي"
+                listeners={{
+                    tabPress: e => {
+                        Analytics.setCurrentScreen('تسالي');
+                    },
+                }}
+                component={GamesScreen} />
             {/* <Tab.Screen name="بحث" component={SearchScreen} /> */}
-            <Tab.Screen name="الرئيسية" component={HomeScreen} />
+            <Tab.Screen name="الرئيسية"
+                listeners={{
+                    tabPress: e => {
+                        Analytics.setCurrentScreen('الرئيسية');
+                    },
+                }}
+                component={HomeScreen} />
         </Tab.Navigator>
     );
 }

@@ -1,12 +1,19 @@
+import TicTac from './TicTac'
+import TheSuper from './TheSuper'
+
 export const games = [
     {
         name: 'Tic Tac',
         path: 'TicTac'
+    },
+    {
+        name: 'The Super',
+        path: 'TheSuper'
     }
 ]
-import TicTac from './TicTac'
 const GAMES = {
-    TicTac
+    TicTac,
+    TheSuper
 }
 export default function LoadGame(game) {
     return GAMES[game]

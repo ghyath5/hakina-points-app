@@ -12,32 +12,34 @@ let client;
 const getNewToken = () => {
     let state = store.getState()
     let refreshToken = state?.client?.refreshToken
-    return client.mutate({
-        mutation: gql`
-        mutation refreshToken{
-            app_refresh{
-                accessToken
-                process
-                refreshToken
-                tel_id
+    const result = new Promise((res, rej) => {
+        client.mutate({
+            mutation: gql`
+            mutation refreshToken{
+                app_refresh{
+                    accessToken
+                    process
+                    refreshToken
+                    tel_id
+                }
             }
-        }
-        `,
-        context: {
-            headers: {
-                'auth': true,
-                'refresh_token': refreshToken
+            `,
+            context: {
+                headers: {
+                    'auth': true,
+                    'refresh_token': refreshToken
+                }
             }
-        }
-    }).then((response) => {
-        // extract your accessToken from your response data and return it
-        const { accessToken, refreshToken, tel_id } = response?.data?.app_refresh;
-        store.dispatch(setTokens({ accessToken, refreshToken, tel_id }))
-        return { accessToken, refreshToken, tel_id };
-    }).catch(e => {
-        store.dispatch(logout())
-        return false
-    });
+        }).then((response) => {
+            // extract your accessToken from your response data and return it
+            const { accessToken, refreshToken, tel_id } = response?.data?.app_refresh;
+            store.dispatch(setTokens({ accessToken, refreshToken, tel_id }))
+            res({ accessToken, refreshToken, tel_id })
+        }).catch(e => {
+            rej(e)
+        });
+    })
+    return result
 };
 const httpLink = new HttpLink({
     uri: 'https://hakina.herokuapp.com/graphql',
@@ -58,8 +60,8 @@ const errorLink = onError(
     ({ graphQLErrors, networkError, operation, forward }) => {
         if (graphQLErrors) {
             for (let err of graphQLErrors) {
-                if (err.message.includes("Error")) {
-                    store.dispatch(logout())
+                if (err?.message?.includes("Error")) {
+                    return store.dispatch(logout())
                 }
                 switch (err.extensions.code) {
                     case "invalid-jwt":

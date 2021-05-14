@@ -21,6 +21,7 @@ export default function Games({ navigation }) {
     const LoadedGame = LoadGame(gamePath)
     const toastMsgSclae = new Animated.Value(1)
     const tel_id = useSelector((state) => state.client.tel_id)
+    const showStatusBar = true //Boolean(!gamePath)
     React.useEffect(() => {
         let interval
         navigation.addListener('blur', () => {
@@ -110,47 +111,57 @@ export default function Games({ navigation }) {
     }
     return (
         <View style={styles.container}>
-            <View style={styles.topBar}>
-                <View style={styles.pointsContainer}>
-                    <FontAwesome5 name={'coins'} color={'orange'} />
-                    <Text style={styles.points}>
-                        {client?.points}
-                    </Text>
+            {
+                showStatusBar &&
+                <View style={styles.topBar}>
+                    <View style={styles.pointsContainer}>
+                        <FontAwesome5 name={'coins'} color={'orange'} />
+                        <Text style={styles.points}>
+                            {client?.points}
+                        </Text>
+                    </View>
+                    <Text style={styles.title}>تسالي حاكينا</Text>
                 </View>
-                <Text style={styles.title}>تسالي حاكينا</Text>
-            </View>
+            }
             <AdMobBanner
                 bannerSize="smartBannerPortrait"
                 adUnitID="ca-app-pub-7749815556108724/2328780715" // Test ID, Replace with your-admob-unit-id
                 servePersonalizedAds />
-            <Animated.View style={{
-                transform: [
-                    {
-                        scaleX: toastMsgSclae
-                    },
-                    {
-                        scaleY: toastMsgSclae
+            {
+                showStatusBar &&
+                <Animated.View style={{
+                    transform: [
+                        {
+                            scaleX: toastMsgSclae
+                        },
+                        {
+                            scaleY: toastMsgSclae
+                        }
+                    ],
+                    backgroundColor: partner ? Theme.primary : 'tomato', padding: 5, borderRadius: 15, top: height / 55, justifyContent: 'center', alignItems: 'center', width: '90%', marginBottom: height / 35
+                }}>
+                    {!partner &&
+                        <Text style={{ color: 'orange', ...styles.toastMsg }}>انت لست في محادثة ... قم بفتح محادثة على البوت لتتمكن من اللعب مع الشريك</Text>
                     }
-                ],
-                backgroundColor: partner ? Theme.primary : 'tomato', padding: 5, borderRadius: 15, top: height / 55, justifyContent: 'center', alignItems: 'center', width: '90%', marginBottom: height / 35
-            }}>
-                {!partner &&
-                    <Text style={{ color: 'orange', ...styles.toastMsg }}>انت لست في محادثة ... قم بفتح محادثة على البوت لتتمكن من اللعب مع الشريك</Text>
-                }
-                {partner && partner.first_name &&
-                    <Text style={{ ...styles.toastMsg }}>انت تلعب مع {partner.first_name}</Text>
-                }
-            </Animated.View>
-            <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-                {/* <TicTac /> */}
-                {!gamePath ?
-                    games.map((game, i) => {
-                        return <GameShape key={i} name={game.name} onClick={() => enterGame(game.path)} />
-                    })
-                    :
+                    {partner && partner.first_name &&
+                        <Text style={{ ...styles.toastMsg }}>انت تلعب مع {partner.first_name}</Text>
+                    }
+                </Animated.View>
+            }
+            {gamePath ?
+                <View style={{ flex: 1, width: '100%' }}>
                     <LoadedGame partner={partner} me={client} navigation={navigation} />
-                }
-            </View>
+
+                </View>
+                :
+                <View style={{ flex: 1, justifyContent: 'space-evenly', alignItems: 'flex-start', flexDirection: 'row', width: '100%' }}>
+                    {
+                        games.map((game, i) => {
+                            return <GameShape key={i} name={game.name} onClick={() => enterGame(game.path)} />
+                        })
+                    }
+                </View>
+            }
         </View>
     )
 }

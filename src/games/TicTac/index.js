@@ -45,7 +45,6 @@ export default function Game({ partner, me }) {
     const resetBoard = () => {
         let newSquares = Array(9).fill(null)
         setSquares(newSquares)
-        // socket.emit('emptify squares')
     }
     if (isBoardFull) {
         Alert.alert('', "تعادل")
