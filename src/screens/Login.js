@@ -96,7 +96,7 @@ export default function Login({ navigation }) {
                         alignItems: 'center',
                         justifyContent: 'center',
                         flexDirection: 'row',
-                        width: '40%',
+                        width: '65%',
                         backgroundColor: '#fff',
                         padding: 10,
                         borderRadius: 50,
@@ -113,7 +113,7 @@ export default function Login({ navigation }) {
                         <>
                             {mode == 'LINK' ?
                                 (<>
-                                    <Text style={{ paddingHorizontal: 5 }}>Send verification code</Text>
+                                    <Text style={{ paddingHorizontal: 5 }} numberOfLines={1}>Send the code</Text>
                                     <FontAwesome5 name="paper-plane" size={24} color={Theme.primary} />
                                 </>)
                                 :
