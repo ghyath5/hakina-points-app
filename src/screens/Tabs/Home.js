@@ -36,10 +36,10 @@ export default function Home() {
         AdMobRewarded.addEventListener("rewardedVideoUserDidEarnReward", () => rewarded());
         AdMobRewarded.addEventListener("rewardedVideoDidLoad", () => { });
         AdMobRewarded.addEventListener("rewardedVideoDidFailToLoad", () => {
-            Alert.alert("", "فشل تحميل الاعلان حاول لاحقاً")
+            Alert.alert("", "Failed to load Ad. Try again later")
         });
         AdMobRewarded.addEventListener("rewardedVideoDidFailToPresent", () => {
-            Alert.alert("", "فشل تحضير الاعلان حاول لاحقاً")
+            Alert.alert("", "Failed to load Ad. Try again later")
         });
         return () => {
             AdMobRewarded.removeAllListeners()
@@ -65,7 +65,7 @@ export default function Home() {
             }
             Alert.alert("", data?.app_rewarded?.message)
         }).catch(e => {
-            Alert.alert("", "حصل خطأ ما")
+            Alert.alert("", "Error!")
         }).finally(() => {
             setReward({
                 ...reward,
@@ -106,8 +106,8 @@ export default function Home() {
                     >
                         {loadingRewarded ? <ActivityIndicator animating={true} size={20} color={Theme.primary} /> :
                             <>
+                                <Text style={{ paddingHorizontal: 5 }}>Collect Points</Text>
                                 <Feather name="youtube" size={24} color={Theme.primary} />
-                                <Text style={{ paddingHorizontal: 5 }}>أجمع النقاط</Text>
                             </>
                         }
 

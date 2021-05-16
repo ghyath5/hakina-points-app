@@ -1,5 +1,5 @@
 import React from 'react'
-import { StyleSheet, Text, View, Dimensions, Image, TextInput, TouchableOpacity, ActivityIndicator, Alert } from 'react-native'
+import { StyleSheet, Text, View, Dimensions, Image, TextInput, TouchableOpacity, ActivityIndicator, Alert, Button } from 'react-native'
 import { useSelector, useDispatch } from 'react-redux'
 import { setTokens } from '../redux/clientSlice'
 import { FontAwesome5 } from '@expo/vector-icons';
@@ -55,29 +55,40 @@ export default function Login({ navigation }) {
                 }))
                 navigation.navigate('Main')
             } else {
-                Alert.alert("", "حدث خطأ .. تأكد من الرمز وأعد المحاولة")
+                Alert.alert("", "Incorrect code")
             }
         }).catch(e => {
-            Alert.alert("", "حدث خطأ .. تأكد من الرمز وأعد المحاولة")
+            Alert.alert("", "Incorrect code")
         }).finally(() => setLoading(false))
     }
     return (
         <View style={styles.loginContainer}>
             <StatusBar style={'light'} backgroundColor={Theme.primary} />
             <View style={styles.topHead}>
-                <Text style={{ fontWeight: 'bold', fontSize: 30 / fontScale, color: Theme.primary }}>حاكينا نقاط</Text>
+                <Text style={{ fontWeight: 'bold', fontSize: 30 / fontScale, color: Theme.primary }}>Hakina tools</Text>
                 <Image style={{ width: '40%', height: screenHeight / 5 }} source={require('../../assets/logo.png')} />
             </View>
 
             <View
                 style={styles.centerContent}>
                 {mode == 'LINK' ?
-                    <View style={styles.inputContainer}>
-                        <TextInput onChangeText={(val) => setLink(val)} value={link} style={{ padding: 5, }} textAlign={'center'} placeholder={'رابط الدعوة'} />
-                    </View>
+                    <>
+                        <View style={styles.inputContainer}>
+                            <TextInput onChangeText={(val) => setLink(val)} value={link} style={{ padding: 5, }} textAlign={'center'} placeholder={'Your Referral Link'} />
+                        </View>
+                        <View style={{ ...styles.inputContainer, width: '60%', backgroundColor: 'transparent', }}>
+                            <Button title={'where can find my referral link !'}
+                                onPress={() => {
+                                    Alert.alert("",
+                                        `Go to 'Hakina Bot'.\nType '/profile'.\nYou will find your referral link there!`
+                                    )
+                                }}
+                            />
+                        </View>
+                    </>
                     :
                     <View style={{ ...styles.inputContainer, width: '70%' }}>
-                        <TextInput onChangeText={(val) => setCode(val)} value={code} style={{ padding: 10, }} textAlign={'center'} placeholder={'أدخل الرمز هنا...'} />
+                        <TextInput onChangeText={(val) => setCode(val)} value={code} style={{ padding: 10, }} textAlign={'center'} placeholder={'Enter the code...'} />
                     </View>
                 }
                 <TouchableOpacity
@@ -101,10 +112,12 @@ export default function Login({ navigation }) {
 
                         <>
                             {mode == 'LINK' ?
-                                (<><FontAwesome5 name="paper-plane" size={24} color={Theme.primary} />
-                                    <Text style={{ paddingHorizontal: 5 }}>أرسل الرمز</Text></>)
+                                (<>
+                                    <Text style={{ paddingHorizontal: 5 }}>Send verification code</Text>
+                                    <FontAwesome5 name="paper-plane" size={24} color={Theme.primary} />
+                                </>)
                                 :
-                                <Text style={{ paddingHorizontal: 5 }}>تحقق</Text>
+                                <Text style={{ paddingHorizontal: 5 }}>Check</Text>
                             }
 
                         </>

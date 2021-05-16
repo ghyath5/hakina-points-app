@@ -13,25 +13,25 @@ const Tab = createBottomTabNavigator();
 export default function tabs() {
     return (
         <Tab.Navigator
-            initialRouteName={'الرئيسية'}
+            initialRouteName={'Home'}
             backBehavior={'initialRoute'}
             screenOptions={({ route }) => ({
                 tabBarIcon: ({ focused, color, size }) => {
                     let iconName;
                     switch (route.name) {
-                        case 'المتجر':
+                        case 'Store':
                             iconName = 'logo-google-playstore'
                             break;
-                        case 'الرئيسية':
+                        case 'Home':
                             iconName = 'home-outline'
                             break;
-                        case 'بحث':
+                        case 'Search':
                             iconName = 'search-outline'
                             break;
-                        case 'تسالي':
+                        case 'Games':
                             iconName = 'game-controller-outline'
                             break;
-                        case 'الحساب':
+                        case 'Account':
                             iconName = 'settings-outline'
                             break;
                     }
@@ -48,29 +48,29 @@ export default function tabs() {
             <Tab.Screen
                 listeners={{
                     tabPress: e => {
-                        Analytics.setCurrentScreen('الحساب');
+                        Analytics.setCurrentScreen('Account');
                     },
                 }}
-                name="الحساب" component={SettingsScreen} />
+                name="Account" component={SettingsScreen} />
             {Platform.OS == 'android' && <Tab.Screen
                 listeners={{
                     tabPress: e => {
-                        Analytics.setCurrentScreen('المتجر');
+                        Analytics.setCurrentScreen('Store');
                     },
                 }}
-                name="المتجر" component={StoreScreen} />}
-            <Tab.Screen name="تسالي"
+                name="Store" component={StoreScreen} />}
+            <Tab.Screen name="Games"
                 listeners={{
                     tabPress: e => {
-                        Analytics.setCurrentScreen('تسالي');
+                        Analytics.setCurrentScreen('Games');
                     },
                 }}
                 component={GamesScreen} />
             {/* <Tab.Screen name="بحث" component={SearchScreen} /> */}
-            <Tab.Screen name="الرئيسية"
+            <Tab.Screen name="Home"
                 listeners={{
                     tabPress: e => {
-                        Analytics.setCurrentScreen('الرئيسية');
+                        Analytics.setCurrentScreen('Home');
                     },
                 }}
                 component={HomeScreen} />

@@ -71,13 +71,13 @@ export default function Store() {
                     purchase.points = points[key]
                     purchase.user_id = tel_id
                     verifyPurchase(purchase).then((data) => {
-                        Alert.alert("", "نجح الشراء")
+                        Alert.alert("", "Success")
                     }).catch((e) => {
-                        Alert.alert("", "فشل")
+                        Alert.alert("", "Fails")
                     })
                     // }
                 } else if (responseCode === IAPResponseCode.USER_CANCELED) {
-                    Alert.alert("", "إلتغت")
+                    Alert.alert("", "Canceld")
                 } else {
                     console.warn(
                         `Something went wrong with the purchase. Received response code ${responseCode} and errorCode ${errorCode}`
@@ -124,7 +124,7 @@ export default function Store() {
         <View style={{ flex: 1 }}>
             <StatusBar style={'light'} backgroundColor={Theme.primary} />
             <View style={styles.topHead}>
-                <Text style={{ fontWeight: 'bold', fontSize: 30 / fontScale, color: Theme.primary }}>متجر حاكينا</Text>
+                <Text style={{ fontWeight: 'bold', fontSize: 30 / fontScale, color: Theme.primary }}>Hakina Store</Text>
                 <Image style={{ width: '40%', height: screenHeight / 5 }} source={require('../../../assets/logo.png')} />
             </View>
             {state.loading ?

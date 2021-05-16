@@ -12,25 +12,31 @@ const gender = {
     'female': 'woman-outline'
 }
 let countries = [
-    'سوريا',
-    'لبنان',
-    "تركيا",
-    "العراق",
-    "فلسطين",
-    "الأردن",
-    "مصر",
-    "اليمن",
-    "المغرب",
-    "الجزائر",
-    "السودان",
-    "تونس",
-    "الإمارات",
-    "البحرين",
-    "السعودية",
-    "الصومال",
-    "عمان",
-    "المانيا",
-    "السويد"
+    'Syria',
+    'Lebanon',
+    "Iraq",
+    "♥Palestine♥",
+    "Jordan",
+    "Egypt",
+    "Yemen",
+    "Morocco",
+    "Algeria",
+    "Sudan",
+    "Tunisia",
+    "UAE",
+    "Bahrain",
+    "Saudi",
+    "Somalia",
+    "Oman",
+    "Turkey",
+    "Germany",
+    "Sweden",
+    "USA",
+    "France",
+    "UK",
+    "Canada",
+    "Indonesia",
+    "New-Zealand"
 ].map((country) => {
     return { label: country, value: country }
 })
@@ -75,7 +81,7 @@ export default function Settings() {
                 }
             },
         }).then(() => {
-            Alert.alert("", "تم حفظ المعلومات")
+            Alert.alert("", "Saved!")
         }).finally(() => {
             setSaveLoading(false)
         })
@@ -98,39 +104,39 @@ export default function Settings() {
                 </View>
                 <View style={{ flexDirection: 'row', flex: 1, }}>
                     <View style={{ backgroundColor: 'white', flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-                        <Text style={{ fontWeight: 'bold' }} >مرات الحظر</Text>
+                        <Text style={{ fontWeight: 'bold' }} >Ban Times</Text>
                         <Text style={{ fontWeight: 'bold', color: 'red' }} >{client.ban_times}</Text>
 
                     </View>
                     <View style={{ borderWidth: 0.5, borderColor: '#eee' }}></View>
                     <View style={{ backgroundColor: 'white', flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-                        <Text style={{ fontWeight: 'bold' }}>النقاط</Text>
+                        <Text style={{ fontWeight: 'bold' }}>Points</Text>
                         <Text style={{ fontWeight: 'bold', color: '#48C433' }} >{client.points}</Text>
                     </View>
                 </View>
             </View>
             <View style={{ flex: 2, backgroundColor: 'white', justifyContent: 'space-evenly', paddingHorizontal: 8 }}>
-                <Text style={{ textAlign: 'center', fontWeight: 'bold', fontSize: 22 / fontScale }}>النبذة الشخصية</Text>
+                <Text style={{ textAlign: 'center', fontWeight: 'bold', fontSize: 22 / fontScale }}>About You</Text>
                 {/* <View style={{}}> */}
                 <RNPickerSelect
                     useNativeAndroidPickerStyle={false}
                     textInputProps={{}}
                     style={pickerSelectStyles}
-                    placeholder={{ label: "الدولة", value: null }}
+                    placeholder={{ label: "Country", value: null }}
                     onValueChange={(value) => setClient({ ...client, info: { ...info, country: value } })}
                     items={countries}
                     value={info?.country}
                 />
                 {/* </View> */}
-                <TextInput onChangeText={(value) => setClient({ ...client, info: { ...info, governorate: value } })} value={info.governorate} placeholder={'المحافظة'} placeholderTextColor={'lightgrey'} style={styles.inputs} />
+                <TextInput onChangeText={(value) => setClient({ ...client, info: { ...info, governorate: value } })} value={info.governorate} placeholder={'Governorate'} placeholderTextColor={'lightgrey'} style={styles.inputs} />
                 <View onTouchEnd={() => { setDatePickerShow(true) }} style={{ ...styles.inputs, minHeight: screenHeight / 18, justifyContent: 'center' }}>
-                    <Text style={{ color: !info.birthday ? 'lightgrey' : 'black', textAlign: 'right' }}>
-                        {info.birthday || 'المواليد'}
+                    <Text style={{ color: !info.birthday ? 'lightgrey' : 'black' }}>
+                        {info.birthday || 'Birthday'}
                     </Text>
                 </View>
 
-                <TextInput onChangeText={(value) => setClient({ ...client, info: { ...info, education: value } })} value={info.education} placeholder={'الدراسة'} placeholderTextColor={'lightgrey'} style={styles.inputs} />
-                <TextInput onChangeText={(value) => setClient({ ...client, info: { ...info, work: value } })} value={info.work} placeholder={'العمل'} placeholderTextColor={'lightgrey'} style={styles.inputs} />
+                <TextInput onChangeText={(value) => setClient({ ...client, info: { ...info, education: value } })} value={info.education} placeholder={'Education'} placeholderTextColor={'lightgrey'} style={styles.inputs} />
+                <TextInput onChangeText={(value) => setClient({ ...client, info: { ...info, work: value } })} value={info.work} placeholder={'Work'} placeholderTextColor={'lightgrey'} style={styles.inputs} />
 
                 {datePickerShow && <DateTimePicker
                     maximumDate={new Date(2009, 12, 30)}
@@ -167,7 +173,7 @@ export default function Settings() {
                     >
                         {saveLoading ? <ActivityIndicator animating={true} size={20} color={'white'} /> :
 
-                            <Text style={{ color: 'white' }}>حفظ</Text>
+                            <Text style={{ color: 'white' }}>Save</Text>
                         }
 
                     </TouchableOpacity>

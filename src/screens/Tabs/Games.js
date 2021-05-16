@@ -51,13 +51,13 @@ export default function Games({ navigation }) {
     useEffect(() => {
         const backAction = () => {
             if (!gamePath) return false;
-            Alert.alert("", "هل تريد إغلاق اللعبة؟", [
+            Alert.alert("", "You want to exit game ?", [
                 {
-                    text: 'إغلاق',
+                    text: 'Exit',
                     onPress: () => setGamePath(null)
                 },
                 {
-                    text: "لا",
+                    text: "Stay",
                     onPress: () => navigation.setOptions({ tabBarVisible: false })
                 }
             ])
@@ -133,7 +133,7 @@ export default function Games({ navigation }) {
                             {client?.points}
                         </Text>
                     </View>
-                    <Text style={styles.title}>تسالي حاكينا</Text>
+                    <Text style={styles.title}>Hakina Games</Text>
                 </View>
             }
             <AdMobBanner
@@ -154,10 +154,10 @@ export default function Games({ navigation }) {
                     backgroundColor: partner ? Theme.primary : 'tomato', padding: 5, borderRadius: 15, top: height / 55, justifyContent: 'center', alignItems: 'center', width: '90%', marginBottom: height / 35
                 }}>
                     {!partner &&
-                        <Text style={{ color: 'orange', ...styles.toastMsg }}>انت لست في محادثة ... قم بفتح محادثة على البوت لتتمكن من اللعب مع الشريك</Text>
+                        <Text style={{ color: 'orange', ...styles.toastMsg }}>You have to be with partner in Hakina bot to be able to play this game</Text>
                     }
                     {partner && partner.first_name &&
-                        <Text style={{ ...styles.toastMsg }}>انت تلعب مع {partner.first_name}</Text>
+                        <Text style={{ ...styles.toastMsg }}>You are playing with {partner.first_name}</Text>
                     }
                 </Animated.View>
             }
