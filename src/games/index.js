@@ -6,14 +6,14 @@ export const games = [
         name: 'Tic Tac',
         path: 'TicTac'
     },
-    {
-        name: 'The Super',
-        path: 'TheSuper'
-    }
+    // {
+    //     name: 'The Super',
+    //     path: 'TheSuper'
+    // }
 ]
 const GAMES = {
     TicTac,
-    TheSuper
+    // TheSuper
 }
 export default function LoadGame(game) {
     return GAMES[game]
