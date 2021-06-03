@@ -59,13 +59,13 @@ export default function tabs() {
                     },
                 }}
                 name="Store" component={StoreScreen} />}
-            {/* <Tab.Screen name="Games"
+            <Tab.Screen name="Games"
                 listeners={{
                     tabPress: e => {
                         Analytics.setCurrentScreen('Games');
                     },
                 }}
-                component={GamesScreen} /> */}
+                component={GamesScreen} />
             {/* <Tab.Screen name="بحث" component={SearchScreen} /> */}
             <Tab.Screen name="Home"
                 listeners={{
