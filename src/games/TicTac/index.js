@@ -102,5 +102,3 @@ export default function Game({ partner, me }) {
         </View>
     )
 }
-
-const styles = StyleSheet.create({})
