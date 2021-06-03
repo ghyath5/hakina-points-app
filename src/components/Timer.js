@@ -3,7 +3,7 @@ import { StyleSheet, Animated } from 'react-native'
 import { CountdownCircleTimer } from 'react-native-countdown-circle-timer'
 import { StatusBar } from 'expo-status-bar'
 const fullyTime = (seconds) => {
-    return new Date(seconds * 1000).toISOString().substr(14, 5)
+    return new Date(seconds * 1000).toISOString().substr(11, 8)
 }
 export default function Timer(props) {
     let barColor = props.timeToEnter >= 400 ? '#FF4732' :
@@ -16,7 +16,7 @@ export default function Timer(props) {
             <CountdownCircleTimer
                 isPlaying
                 trailColor={'#eee'}
-                duration={60 * 10}
+                duration={60 * 60 * 6}
                 initialRemainingTime={props.timeToEnter}
                 colors={[
                     ['#FF4732', 0.6],

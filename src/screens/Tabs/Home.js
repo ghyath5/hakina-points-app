@@ -61,7 +61,7 @@ export default function Home() {
             }
         }).then(({ data }) => {
             if (data?.app_rewarded?.state) {
-                dispatch(setTime(new Date().setMinutes(new Date().getMinutes() + 10)))
+                dispatch(setTime(new Date().setMinutes(new Date().getMinutes() + 60 * 6)))
             }
             Alert.alert("", data?.app_rewarded?.message)
         }).catch(e => {
@@ -74,12 +74,13 @@ export default function Home() {
         })
     }
     const collectPoints = () => {
-        setLoadingRewardedAd(true)
-        AdMobRewarded.requestAdAsync().then(() => {
-            AdMobRewarded.showAdAsync();
-        }).catch(error => console.log(error)).finally(() => {
-            setLoadingRewardedAd(false)
-        });
+        // setLoadingRewardedAd(true)
+        // AdMobRewarded.requestAdAsync().then(() => {
+        //     AdMobRewarded.showAdAsync();
+        // }).catch(error => console.log(error)).finally(() => {
+        //     setLoadingRewardedAd(false)
+        // });
+        rewarded()
     }
     const AdBanner = (props) => <AdMobBanner
         bannerSize="mediumRectangle"

@@ -135,7 +135,7 @@ android {
         applicationId 'com.superdar.hakina_coins'
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode 14
+        versionCode 15
         versionName "4.1.1"
     }
     splits {

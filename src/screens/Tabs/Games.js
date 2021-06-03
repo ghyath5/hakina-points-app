@@ -154,7 +154,7 @@ export default function Games({ navigation }) {
                     backgroundColor: partner ? Theme.primary : 'tomato', padding: 5, borderRadius: 15, top: height / 55, justifyContent: 'center', alignItems: 'center', width: '90%', marginBottom: height / 35
                 }}>
                     {!partner &&
-                        <Text style={{ color: 'orange', ...styles.toastMsg }}>You have to be with partner in Hakina bot to be able to play this game</Text>
+                        <Text style={{ color: 'orange', ...styles.toastMsg }}>You have to be in a conversation in Hakina bot to be able to play these games</Text>
                     }
                     {partner && partner.first_name &&
                         <Text style={{ ...styles.toastMsg }}>You are playing with {partner.first_name}</Text>

@@ -42,7 +42,7 @@ const getNewToken = () => {
     return result
 };
 const httpLink = new HttpLink({
-    uri: 'https://hakina.herokuapp.com/graphql',
+    uri: 'https://hakina.fly.dev/v1/graphql',
 });
 
 const authLink = setContext((_, { headers }) => {
