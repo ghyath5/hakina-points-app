@@ -2,7 +2,7 @@
   "expo": {
     "name": "Hakina Points",
     "slug": "hakina-points",
-    "version": "4.1.1",
+    "version": "4.1.2",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "splash": {
@@ -11,7 +11,7 @@
       "backgroundColor": "#ffffff"
     },
     "updates": {
-      "fallbackToCacheTimeout": 30000
+      "fallbackToCacheTimeout": 40000
     },
     "assetBundlePatterns": [
       "**/*"

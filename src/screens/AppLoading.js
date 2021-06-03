@@ -15,7 +15,7 @@ import Constants from 'expo-constants';
 export default function AppLoading(props) {
     const refreshToken = useSelector((state) => state?.client?.refreshToken)
     const dispatch = useDispatch()
-    if (Constants.nativeAppVersion != '4.1.1') {
+    if (Constants.nativeAppVersion != '4.1.2') {
         Alert.alert('تنبيه', "قم بتحديث التطبيق من المتجر", [
             {
                 text: 'تحديث',
