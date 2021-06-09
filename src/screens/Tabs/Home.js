@@ -82,15 +82,16 @@ export default function Home() {
         // });
         rewarded()
     }
-    const AdBanner = (props) => <AdMobBanner
-        bannerSize="mediumRectangle"
-        adUnitID={Platform.OS == 'ios' ? bannerRecIdIOS : bannerRecId} // Test ID, Replace with your-admob-unit-id
-        servePersonalizedAds // true or false
-        onDidFailToReceiveAdWithError={(e) => { }} />
-    const MemoAd = React.useMemo(() => AdBanner, [])
     return (
         <View style={styles.container}>
             <ActivityIndicator style={{ flex: 1, position: 'absolute', justifyContent: 'center', alignItems: 'center', width: '100%', height: '100%' }} animating={reward.loading} size={70} color={'tomato'} />
+            <View style={{ alignItems: 'center', flex: 1, justifyContent: 'center' }}>
+                <AdMobBanner
+                    bannerSize="smartBannerPortrait"
+                    adUnitID={Platform.OS == 'ios' ? bannerRecIdIOS : bannerRecId} // Test ID, Replace with your-admob-unit-id
+                    servePersonalizedAds // true or false
+                    onDidFailToReceiveAdWithError={(e) => { }} />
+            </View>
             <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
                 {Boolean(timeToEnter <= 0) ?
                     <TouchableOpacity
@@ -103,7 +104,11 @@ export default function Home() {
                             padding: 10,
                             borderRadius: 50,
                         }}
-                        onPress={collectPoints}
+                        onPress={() => {
+                            if (!reward.loading) {
+                                collectPoints()
+                            }
+                        }}
                     >
                         {loadingRewarded ? <ActivityIndicator animating={true} size={20} color={Theme.primary} /> :
                             <>
@@ -119,10 +124,6 @@ export default function Home() {
                             canReward: true
                         })
                     }} />}
-            </View>
-
-            <View style={{ alignItems: 'center', flex: 1, justifyContent: 'center' }}>
-                <MemoAd />
             </View>
         </View>
     )
