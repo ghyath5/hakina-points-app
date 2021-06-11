@@ -86,7 +86,7 @@ export default function Home() {
             <ActivityIndicator style={{ flex: 1, position: 'absolute', justifyContent: 'center', alignItems: 'center', width: '100%', height: '100%' }} animating={reward.loading} size={70} color={'tomato'} />
             <View style={{ alignItems: 'center', flex: 1, justifyContent: 'center' }}>
                 <AdMobBanner
-                    bannerSize="smartBannerPortrait"
+                    bannerSize="largeBanner"
                     adUnitID={Platform.OS == 'ios' ? bannerRecIdIOS : bannerRecId} // Test ID, Replace with your-admob-unit-id
                     servePersonalizedAds // true or false
                     onDidFailToReceiveAdWithError={(e) => { }} />
