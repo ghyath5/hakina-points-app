@@ -16,7 +16,7 @@ export default function Timer(props) {
             <CountdownCircleTimer
                 isPlaying
                 trailColor={'#eee'}
-                duration={60 * 15}
+                duration={60 * 30}
                 initialRemainingTime={props.timeToEnter}
                 colors={[
                     ['#FF4732', 0.6],
