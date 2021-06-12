@@ -10,10 +10,12 @@ import { getNewToken } from './../../apollo'
 import { ME } from './../../gql'
 import { ioSocket } from '../../socket'
 import {
-    AdMobBanner,
+    AdMobBanner, AdMobInterstitial,
 } from 'expo-ads-admob';
 import * as Analytics from 'expo-firebase-analytics';
+import { mainInterstital } from '../../Admob';
 LogBox.ignoreLogs(["Setting a timer"]);
+
 const { height } = Dimensions.get('screen')
 export default function Games({ navigation }) {
     const [gamePath, setGamePath] = useState(null)
@@ -54,7 +56,10 @@ export default function Games({ navigation }) {
             Alert.alert("", "You want to exit game ?", [
                 {
                     text: 'Exit',
-                    onPress: () => setGamePath(null)
+                    onPress: () => {
+                        setGamePath(null)
+                        displayAd()
+                    }
                 },
                 {
                     text: "Stay",
@@ -101,6 +106,16 @@ export default function Games({ navigation }) {
         }
         setGamePath(path)
         navigation.setOptions({ tabBarVisible: false });
+    }
+    React.useEffect(() => {
+        const bootstrapAsync = async () => {
+            await AdMobInterstitial.setAdUnitID(mainInterstital);
+        }
+        bootstrapAsync()
+    }, [])
+    const displayAd = async () => {
+        await AdMobInterstitial.requestAdAsync({ servePersonalizedAds: true });
+        await AdMobInterstitial.showAdAsync();
     }
     const animateToast = () => {
         Animated.spring(toastMsgSclae, {
@@ -170,7 +185,10 @@ export default function Games({ navigation }) {
                 <View style={{ flex: 1, justifyContent: 'space-evenly', alignItems: 'flex-start', flexDirection: 'row', width: '100%' }}>
                     {
                         games.map((game, i) => {
-                            return <GameShape key={i} name={game.name} onClick={() => enterGame(game.path)} />
+                            return <GameShape key={i} name={game.name} onClick={() => {
+                                displayAd()
+                                enterGame(game.path)
+                            }} />
                         })
                     }
                 </View>
