@@ -13,7 +13,7 @@ import {
     AdMobBanner, AdMobInterstitial,
 } from 'expo-ads-admob';
 import * as Analytics from 'expo-firebase-analytics';
-import { mainInterstital } from '../../Admob';
+import { bannerRecId, mainInterstital } from '../../Admob';
 LogBox.ignoreLogs(["Setting a timer"]);
 
 const { height } = Dimensions.get('screen')
@@ -153,7 +153,7 @@ export default function Games({ navigation }) {
             }
             <AdMobBanner
                 bannerSize="smartBannerPortrait"
-                adUnitID="ca-app-pub-7749815556108724/2328780715" // Test ID, Replace with your-admob-unit-id
+                adUnitID={bannerRecId} // Test ID, Replace with your-admob-unit-id
                 servePersonalizedAds />
             {
                 showStatusBar &&
