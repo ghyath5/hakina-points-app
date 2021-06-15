@@ -25,7 +25,7 @@ export default function tabs() {
                         case 'Home':
                             iconName = 'home-outline'
                             break;
-                        case 'Search':
+                        case 'History':
                             iconName = 'search-outline'
                             break;
                         case 'Games':
@@ -66,7 +66,13 @@ export default function tabs() {
                     },
                 }}
                 component={GamesScreen} />
-            {/* <Tab.Screen name="بحث" component={SearchScreen} /> */}
+            <Tab.Screen name="History" component={SearchScreen}
+                listeners={{
+                    tabPress: e => {
+                        Analytics.setCurrentScreen('History');
+                    },
+                }}
+            />
             <Tab.Screen name="Home"
                 listeners={{
                     tabPress: e => {
