@@ -64,3 +64,11 @@ mutation purchase($receipt:json!){
   }
 }
 `;
+
+export const PREVIOUS_CLIENTS = gql`
+query get_previous_clients{
+    get_previous_clients{
+      clients
+    }
+}
+`;
