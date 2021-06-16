@@ -75,7 +75,7 @@ export default function Home() {
     }
     const collectPoints = () => {
         setLoadingRewardedAd(true)
-        AdMobRewarded.requestAdAsync().then(() => {
+        AdMobRewarded.requestAdAsync({ servePersonalizedAds: true }).then(() => {
             AdMobRewarded.showAdAsync();
         }).catch(error => console.log(error)).finally(() => {
             setLoadingRewardedAd(false)
@@ -87,7 +87,7 @@ export default function Home() {
             <View style={{ alignItems: 'center', flex: 1, justifyContent: 'center' }}>
                 <AdMobBanner
                     bannerSize="mediumRectangle"
-                    adUnitID={Platform.OS == 'ios' ? bannerRecIdIOS : bannerRecId} // Test ID, Replace with your-admob-unit-id
+                    adUnitID={Platform.OS == 'ios' ? bannerRecIdIOS : bannerRecId}
                     servePersonalizedAds // true or false
                     onDidFailToReceiveAdWithError={(e) => { }} />
             </View>
