@@ -186,7 +186,6 @@ export default function Games({ navigation }) {
                     {
                         games.map((game, i) => {
                             return <GameShape key={i} name={game.name} onClick={() => {
-                                displayAd()
                                 enterGame(game.path)
                             }} />
                         })
