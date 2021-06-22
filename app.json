@@ -1,5 +1,6 @@
 {
   "expo": {
+    "schema":"hakina",
     "name": "Hakina Points",
     "slug": "hakina-points",
     "version": "4.2.0",
