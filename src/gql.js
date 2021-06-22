@@ -19,6 +19,14 @@ mutation app_rewarded($key:String!){
     }
 }
 `;
+export const SET_DEVICE_INFO = gql`
+mutation update_clients_by_pk($pk_columns:clients_pk_columns_input!,$_set:clients_set_input){
+  update_clients_by_pk(pk_columns:$pk_columns,_set:$_set){
+        first_name
+        tel_id
+    }
+}
+`;
 
 export const ME = gql`
 query me($tel_id:String!){

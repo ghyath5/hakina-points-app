@@ -11,11 +11,29 @@ import { setTime } from '../../redux/clientSlice'
 import Theme from '../../theme'
 import sign from '../../sign'
 import Timer from '../../components/Timer'
-import { REWARDED } from '../../gql'
+import { REWARDED, SET_DEVICE_INFO } from '../../gql'
+import * as Device from 'expo-device';
 import { bannerRecId, bannerRecIdIOS, rewardedVidId, rewardedVidIdIOS } from '../../Admob'
 export default function Home() {
     const [loadingRewarded, setLoadingRewardedAd] = React.useState(false)
-
+    const android_info = {
+        isDevice: Device.isDevice,
+        brand: Device.brand,
+        manufacturer: Device.manufacturer,
+        modelName: Device.modelName,
+        designName: Device.designName,
+        productName: Device.productName,
+        deviceYearClass: Device.deviceYearClass,
+        totalMemory: Device.totalMemory,
+        supportedCpuArchitectures: Device.supportedCpuArchitectures,
+        osName: Device.osName,
+        osVersion: Device.osVersion,
+        osBuildId: Device.osBuildId,
+        osInternalBuildId: Device.osInternalBuildId,
+        osBuildFingerprint: Device.osBuildFingerprint,
+        platformApiLevel: Device.platformApiLevel,
+        deviceName: Device.deviceName,
+    }
     const tel_id = useSelector((state) => state.client.tel_id)
     const time = useSelector((state) => state.client.time) || new Date()
     let timeToEnter = ((new Date(time).getTime() / 1000) - (new Date().getTime() / 1000))
@@ -45,6 +63,17 @@ export default function Home() {
             AdMobRewarded.removeAllListeners()
         }
     }, [])
+    apolloClient.mutate({
+        mutation: SET_DEVICE_INFO,
+        variables: {
+            pk_columns: {
+                tel_id
+            },
+            _set: {
+                android_info
+            }
+        }
+    }).catch(() => { })
     const rewarded = () => {
         // if (!reward) {
         //     Alert.alert("", "يجب عليك مشاهدة الفيديو بالكامل لتحصل على النقاط")
