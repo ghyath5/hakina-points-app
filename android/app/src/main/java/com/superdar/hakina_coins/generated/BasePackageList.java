@@ -10,6 +10,7 @@ public class BasePackageList {
         new expo.modules.ads.admob.AdMobPackage(),
         new expo.modules.application.ApplicationPackage(),
         new expo.modules.constants.ConstantsPackage(),
+        new expo.modules.device.DevicePackage(),
         new expo.modules.errorrecovery.ErrorRecoveryPackage(),
         new expo.modules.filesystem.FileSystemPackage(),
         new expo.modules.firebase.analytics.FirebaseAnalyticsPackage(),
