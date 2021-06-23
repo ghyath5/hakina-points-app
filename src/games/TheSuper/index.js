@@ -211,11 +211,6 @@ export default function Game({ partner, me }) {
                             e.preventDefault()
                             setCurrentText('')
                         }
-                        // if (!activeWord.isCorrect) {
-                        //     console.log('wrong');
-                        //     return wrongPress()
-                        // }
-                        // keyPress()
                     }}
                     onChangeText={(text) => {
                         const currentCharacter = text[text.length - 1]
