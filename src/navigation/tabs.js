@@ -1,7 +1,7 @@
 import React from 'react'
 import { StyleSheet, Platform } from 'react-native'
 
-import SearchScreen from '../screens/Tabs/Search'
+import SearchScreen from '../screens/Tabs/Find'
 import GamesScreen from '../screens/Tabs/Games'
 import SettingsScreen from '../screens/Tabs/Settings'
 import StoreScreen from '../screens/Tabs/Store'
@@ -25,7 +25,7 @@ export default function tabs() {
                         case 'Home':
                             iconName = 'home-outline'
                             break;
-                        case 'History':
+                        case 'Find':
                             iconName = 'search-outline'
                             break;
                         case 'Games':
@@ -66,10 +66,10 @@ export default function tabs() {
                     },
                 }}
                 component={GamesScreen} />
-            <Tab.Screen name="History" component={SearchScreen}
+            <Tab.Screen name="Find" component={SearchScreen}
                 listeners={{
                     tabPress: e => {
-                        Analytics.setCurrentScreen('History');
+                        Analytics.setCurrentScreen('Find');
                     },
                 }}
             />

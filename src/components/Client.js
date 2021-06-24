@@ -16,7 +16,9 @@ export default function Client({ item: client, onClick }) {
             backgroundColor: (client.is_banned) ? '#FF6E21' : 'white'
         }}>
             <TouchableOpacity
-                onPress={onClick}
+                onPress={() => {
+                    onClick(client)
+                }}
                 style={{
                     width: '100%',
                     height: '100%',

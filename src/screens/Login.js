@@ -28,7 +28,7 @@ export default function Login({ navigation }) {
                     'auth': true,
                 }
             }
-        }).then(({ data }) => {
+        }).then(() => {
             updateMode('CODE')
         }).catch(e => {
         }).finally(() => setLoading(false))

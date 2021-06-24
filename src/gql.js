@@ -52,6 +52,20 @@ query me($tel_id:String!){
     }
 }
 `;
+export const CLIENTS = gql`
+query clients($where:clients_bool_exp!,$limit:Int){
+    clients(where:$where,limit:$limit){
+        ban_times
+        tel_id
+        first_name
+        points
+        gender
+        created_at
+        is_trust
+        last_seen
+    }
+}
+`;
 
 export const UPSERT_USER_INFO = gql`
 mutation upsert_info($object:user_info_insert_input!,$on_conflict:user_info_on_conflict){
@@ -78,5 +92,22 @@ query get_previous_clients{
     get_previous_clients{
       clients
     }
+}
+`;
+
+export const GENERATE_SEARCH_TOKEN = gql`
+mutation app_generate_searcher_token($key:String!){
+  app_generate_searcher_token(key:$key){
+    accessToken
+    allowedClientsIds
+  }
+}
+`;
+
+export const SEND_PRIVATE_MESSAGE = gql`
+mutation send_private_message($data:sendMessageInput!){
+  send_private_message(data:$data){
+    message
+  }
 }
 `;

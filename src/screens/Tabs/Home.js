@@ -8,14 +8,15 @@ import {
 import { useSelector, useDispatch } from 'react-redux'
 import { useApolloClient } from '@apollo/client'
 import { setTime } from '../../redux/clientSlice'
-import Theme from '../../theme'
 import sign from '../../sign'
 import Timer from '../../components/Timer'
 import { REWARDED, SET_DEVICE_INFO } from '../../gql'
 import * as Device from 'expo-device';
 import { bannerRecId, bannerRecIdIOS, rewardedVidId, rewardedVidIdIOS } from '../../Admob'
+import Adreward from '../../components/Adreward'
+import { useIsFocused } from '@react-navigation/native';
+const TAB_NAME = 'HOME'
 export default function Home() {
-    const [loadingRewarded, setLoadingRewardedAd] = React.useState(false)
     const android_info = {
         isDevice: Device.isDevice,
         brand: Device.brand,
@@ -49,20 +50,7 @@ export default function Home() {
         }
         bootstrapAsync()
     }, [])
-    React.useEffect(() => {
-        // AdMobRewarded.addEventListener('rewardedVideoDidDismiss', () => rewarded())
-        AdMobRewarded.addEventListener("rewardedVideoUserDidEarnReward", () => rewarded());
-        AdMobRewarded.addEventListener("rewardedVideoDidLoad", () => { });
-        AdMobRewarded.addEventListener("rewardedVideoDidFailToLoad", () => {
-            Alert.alert("", "Failed to load Ad. Try again later")
-        });
-        AdMobRewarded.addEventListener("rewardedVideoDidFailToPresent", () => {
-            Alert.alert("", "Failed to load Ad. Try again later")
-        });
-        return () => {
-            AdMobRewarded.removeAllListeners()
-        }
-    }, [])
+    let isFocused = useIsFocused()
     apolloClient.mutate({
         mutation: SET_DEVICE_INFO,
         variables: {
@@ -74,10 +62,9 @@ export default function Home() {
             }
         }
     }).catch(() => { })
+
     const rewarded = () => {
-        // if (!reward) {
-        //     Alert.alert("", "يجب عليك مشاهدة الفيديو بالكامل لتحصل على النقاط")
-        // }
+        if (!isFocused) return;
         setReward({
             ...reward,
             loading: true
@@ -90,7 +77,7 @@ export default function Home() {
             }
         }).then(({ data }) => {
             if (data?.app_rewarded?.state) {
-                dispatch(setTime(new Date().setMinutes(new Date().getMinutes() + 60)))
+                dispatch(setTime(new Date().setMinutes(new Date().getMinutes() + 45)))
             }
             Alert.alert("", data?.app_rewarded?.message)
         }).catch(e => {
@@ -101,14 +88,6 @@ export default function Home() {
                 loading: false
             })
         })
-    }
-    const collectPoints = () => {
-        setLoadingRewardedAd(true)
-        AdMobRewarded.requestAdAsync({ servePersonalizedAds: true }).then(() => {
-            AdMobRewarded.showAdAsync();
-        }).catch(error => console.log(error)).finally(() => {
-            setLoadingRewardedAd(false)
-        });
     }
     return (
         <View style={styles.container}>
@@ -122,30 +101,15 @@ export default function Home() {
             </View>
             <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
                 {Boolean(timeToEnter <= 0) ?
-                    <TouchableOpacity
-                        style={{
-                            alignItems: 'center',
-                            justifyContent: 'center',
-                            flexDirection: 'row',
-                            width: '70%',
-                            backgroundColor: '#fff',
-                            padding: 10,
-                            borderRadius: 50,
-                        }}
-                        onPress={() => {
-                            if (!reward.loading) {
-                                collectPoints()
-                            }
-                        }}
-                    >
-                        {loadingRewarded ? <ActivityIndicator animating={true} size={20} color={Theme.primary} /> :
-                            <>
-                                <Text style={{ paddingHorizontal: 5 }}>Collect Points</Text>
-                                <Feather name="youtube" size={24} color={Theme.primary} />
-                            </>
-                        }
+                    isFocused && <Adreward
+                        adUnitID={rewardedVidId}
+                        btnText={'Collect Points'}
+                        name={TAB_NAME}
+                        watched={(actionName) => {
+                            if (actionName != TAB_NAME) return
+                            rewarded()
+                        }} />
 
-                    </TouchableOpacity>
                     : <Timer timeToEnter={timeToEnter} timerDone={() => {
                         setReward({
                             loading: false,

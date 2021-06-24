@@ -7,6 +7,7 @@ export const clientSlice = createSlice({
         accessToken: null,
         isLoggedIn: false,
         refreshToken: null,
+        searcherAccessToken: null,
         tel_id: '',
         time: null,
         data: {}
@@ -16,6 +17,9 @@ export const clientSlice = createSlice({
             state.accessToken = action?.payload?.accessToken
             state.refreshToken = action?.payload?.refreshToken
             state.tel_id = action?.payload?.tel_id
+        },
+        setSearchToken: (state, action) => {
+            state.searcherAccessToken = action?.payload?.searcherAccessToken
         },
         setData: (state, action) => {
             state.data = action.payload
@@ -34,6 +38,6 @@ export const clientSlice = createSlice({
 })
 
 // Action creators are generated for each case reducer function
-export const { setData, setTokens, logout, setTime } = clientSlice.actions
+export const { setData, setTokens, logout, setTime, setSearchToken } = clientSlice.actions
 
 export default clientSlice.reducer

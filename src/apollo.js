@@ -7,7 +7,7 @@ import { setContext } from '@apollo/client/link/context';
 import { store } from './redux/store'
 import { logout, setTokens } from './redux/clientSlice'
 
-let client;
+let client, searcherClient;
 
 const getNewToken = () => {
     let state = store.getState()
@@ -56,6 +56,19 @@ const authLink = setContext((_, { headers }) => {
         }
     }
 });
+
+const authLinkSearcher = setContext((_, { headers }) => {
+    // get the authentication token from local storage if it exists
+    let state = store.getState()
+    let accessToken = state?.client?.searcherAccessToken
+    return {
+        headers: {
+            ...headers,
+            ...(accessToken && !headers?.auth ? { Authorization: `Bearer ${accessToken}` } : {})
+        }
+    }
+});
+
 const errorLink = onError(
     ({ graphQLErrors, networkError, operation, forward }) => {
         if (graphQLErrors) {
@@ -92,4 +105,8 @@ client = new ApolloClient({
     cache: new InMemoryCache()
 });
 
-export { client, getNewToken };
+searcherClient = new ApolloClient({
+    link: ApolloLink.from([authLinkSearcher, httpLink]),
+    cache: new InMemoryCache()
+});
+export { client, getNewToken, searcherClient };
