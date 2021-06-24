@@ -185,12 +185,12 @@ export default function Find({ navigation }) {
                                         borderRadius: 50,
                                     }}
                                     onPress={() => {
-                                        if (loading) return;
+                                        if (loading || !searchName) return;
                                         setLoading(true)
                                         searcherClient.query({
                                             query: CLIENTS,
                                             variables: {
-                                                limit: 20,
+                                                limit: 50,
                                                 where: {
                                                     tel_id: {
                                                         _in: searchClients
