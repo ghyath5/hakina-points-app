@@ -11,6 +11,10 @@ import AppNavigator from './src/navigation';
 import {
   SafeAreaView,
 } from 'react-native-safe-area-context';
+
+import { I18nManager } from 'react-native'
+I18nManager.forceRTL(false);
+I18nManager.allowRTL(false);
 enableScreens(true);
 export default function App() {
   // const token = useSelector((state) => state.client.token)
