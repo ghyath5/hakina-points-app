@@ -30,8 +30,7 @@ export default function Login({ navigation }) {
             }
         }).then(() => {
             updateMode('CODE')
-        }).catch(e => {
-        }).finally(() => setLoading(false))
+        }).catch(() => { }).finally(() => setLoading(false))
     }
     const verifyCode = () => {
         setLoading(true)

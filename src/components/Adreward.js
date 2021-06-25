@@ -1,5 +1,5 @@
 import React from 'react'
-import { Text, TouchableOpacity, ActivityIndicator } from 'react-native'
+import { Text, TouchableOpacity, ActivityIndicator, Alert } from 'react-native'
 import {
     AdMobRewarded,
 } from 'expo-ads-admob';
