@@ -6,8 +6,11 @@ import {
 import theme from '../theme';
 import { Feather } from '@expo/vector-icons';
 import { useIsFocused } from '@react-navigation/native';
+import * as Analytics from 'expo-firebase-analytics';
+import { useSelector } from 'react-redux';
 export default function Adreward({ done, watched, loaded, btnText, adUnitID, name }) {
     const [loadingRewarded, setLoadingRewardedAd] = React.useState(false)
+    const tel_id = useSelector((state) => state.client.tel_id)
     let isFocused = useIsFocused()
     React.useEffect(() => {
         const bootstrapAsync = async () => {
@@ -46,6 +49,10 @@ export default function Adreward({ done, watched, loaded, btnText, adUnitID, nam
             }}
             onPress={() => {
                 if (loadingRewarded) return;
+                Analytics.logEvent('Watch_Reward_Video', {
+                    name: tel_id,
+                    screen: name
+                });
                 showAd()
             }}
         >
